@@ -1,0 +1,6 @@
+framework module Pods_NHT_Category_Tests {
+  umbrella header "Pods-NHT_Category_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

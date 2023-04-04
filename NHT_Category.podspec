@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'NHT_Category'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of NHT_Category.'
+  s.summary          = '一些常用的Category.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -24,8 +24,8 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/NHT18610866107@163.com/NHT_Category'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'NHT18610866107@163.com' => 'NHT18610866107@163.com' }
-  s.source           = { :git => 'https://github.com/NHT18610866107@163.com/NHT_Category.git', :tag => s.version.to_s }
+  s.author           = { 'NHT' => 'NHT' }
+  s.source           = { :git => 'https://github.com/MasterChatting/NHT_Category.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'

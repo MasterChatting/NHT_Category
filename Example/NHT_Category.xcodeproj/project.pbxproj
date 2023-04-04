@@ -62,11 +62,11 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E78AFA175FDD21D5D5FAF5E /* Pods-NHT_Category_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NHT_Category_Tests.debug.xcconfig"; path = "Target Support Files/Pods-NHT_Category_Tests/Pods-NHT_Category_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		AFB1956BA60FFC5EABA73112 /* NHT_Category.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = NHT_Category.podspec; path = ../NHT_Category.podspec; sourceTree = "<group>"; };
+		AFB1956BA60FFC5EABA73112 /* NHT_Category.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NHT_Category.podspec; path = ../NHT_Category.podspec; sourceTree = "<group>"; };
 		D983026CBDE8B899D52EEF26 /* Pods-NHT_Category_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NHT_Category_Example.release.xcconfig"; path = "Target Support Files/Pods-NHT_Category_Example/Pods-NHT_Category_Example.release.xcconfig"; sourceTree = "<group>"; };
-		DEFEAA28EAFD5C1C898AC250 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		DEFEAA28EAFD5C1C898AC250 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		EFD1F6AD430578069FADCE1B /* Pods-NHT_Category_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NHT_Category_Example.debug.xcconfig"; path = "Target Support Files/Pods-NHT_Category_Example/Pods-NHT_Category_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		F5E6ACD13DAA5CC295360D8A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F5E6ACD13DAA5CC295360D8A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +193,6 @@
 				9E78AFA175FDD21D5D5FAF5E /* Pods-NHT_Category_Tests.debug.xcconfig */,
 				46A6DC8D948657E85855E9F1 /* Pods-NHT_Category_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -249,6 +248,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "NHT18610866107@163.com";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						ProvisioningStyle = Manual;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -259,6 +261,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -513,12 +516,15 @@
 			baseConfigurationReference = EFD1F6AD430578069FADCE1B /* Pods-NHT_Category_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NHT_Category/NHT_Category-Prefix.pch";
 				INFOPLIST_FILE = "NHT_Category/NHT_Category-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -529,12 +535,15 @@
 			baseConfigurationReference = D983026CBDE8B899D52EEF26 /* Pods-NHT_Category_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NHT_Category/NHT_Category-Prefix.pch";
 				INFOPLIST_FILE = "NHT_Category/NHT_Category-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

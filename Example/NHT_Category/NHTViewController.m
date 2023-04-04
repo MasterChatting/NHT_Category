@@ -7,6 +7,7 @@
 //
 
 #import "NHTViewController.h"
+#import "UIViewController+CommonFunction.h"
 
 @interface NHTViewController ()
 
@@ -17,7 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self setNavTitle:@"9090" textColor:UIColor.redColor textFont:[UIFont systemFontOfSize:20]];
+    [self setNavBarBackColor:UIColor.whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
