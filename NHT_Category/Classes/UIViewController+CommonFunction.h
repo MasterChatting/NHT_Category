@@ -37,15 +37,21 @@ NS_ASSUME_NONNULL_BEGIN
 /**如果想设置alert的title，可以直接设置
  UIAlertController *alert = [self createDisappearALertWithMessage:@"message" disappearTime:3 withTag:10];
  alert.title = @"需要的titile";
+ 
+ 可通过设置
+ DefaultMessageText（默认提示语文字）、DefaultSureText（默认确认文字）、DefaultCancelText（默认取消文字）来更改弹窗显示文字，比如适配多语言情况，可直接设置DefaultCancelText为Cancel，这样取消按钮默认就是Cancel
+ 比如：在应用启动后设置
+ [[NSUserDefaults standardUserDefaults] setValue:@"Cancel" forKey:@"DefaultCancelText"];
+ 这样取消按钮默认就显示未Cancel
  */
 
 /// 创建alert---自定义取消、确认按钮文字，取消按钮文字不存在就不添加取消按钮然后就变成只有一个按钮的alert
 /// - Parameters:
 ///   - message: 提示语
 ///   - sureText: 确认按钮文字
-///   - cancleText: 取消按钮文字
+///   - cancelText: 取消按钮文字
 ///   - tag: 唯一标识值
-- (void)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancleText:(NSString *)cancleText withTag:(int)tag;
+- (UIAlertController *)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag;
 
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 /// - Parameters:

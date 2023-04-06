@@ -123,13 +123,14 @@
 #pragma mark---创建各种类型提示窗AlertViewController
 #pragma mark---创建各种类型提示窗AlertViewController
 /// 创建alert---自定义取消、确认按钮文字，取消按钮文字不存在就不添加取消按钮然后就变成只有一个按钮的alert
-- (void)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancleText:(NSString *)cancleText withTag:(int)tag{
+- (UIAlertController *)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag{
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
     [self addSureActionFromAlert:alert isInput:NO sureText:sureText withTag:(int)tag];
-    if(sureText && sureText.length > 0){
-        [self addCancleActionFromAlert:alert cancleText:cancleText];
+    if(cancelText && cancelText.length > 0){
+        [self addCancelActionFromAlert:alert cancelText:cancelText];
     }
     [self presentViewController:alert animated:YES completion:nil];
+    return alert;
 }
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 - (UIAlertController *)createInputAlertWithMessage:(NSString *)message withTag:(int)tag{
@@ -139,14 +140,19 @@
         [self configAlertTextField:textField];
     }];
     [self addSureActionFromAlert:alert isInput:YES sureText:@"" withTag:(int)tag];
-    [self addCancleActionFromAlert:alert cancleText:@""];
+    [self addCancelActionFromAlert:alert cancelText:@""];
     [self presentViewController:alert animated:YES completion:nil];
     return alert;
 }
 /// 创建alert---自动消失的alert，disappearTime自动消失时间，不能为0
 - (UIAlertController *)createDisappearALertWithMessage:(NSString *)message disappearTime:(CGFloat)disappearTime withTag:(int)tag{
     if (!message || message.length < 1) {
-        message = @"操作失败，请重试！";
+        NSString * defaultMessageTest = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultMessageText"];
+        if (defaultMessageTest == nil || defaultMessageTest == NULL || [defaultMessageTest isKindOfClass:[NSNull class]] || [[defaultMessageTest stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
+            message = @"操作失败，请重试！";
+        }else{
+            message = defaultMessageTest;
+        }
     }
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
     if (disappearTime == 0) {
@@ -165,18 +171,28 @@
 ///给alert添加确定按钮
 - (void)addSureActionFromAlert:(UIAlertController *)alert isInput:(BOOL)isInput sureText:(NSString *)sureText withTag:(int)tag{
     if (!sureText || sureText.length < 1) {
-        sureText = @"确定";
+        NSString * defaultSureText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultSureText"];
+        if (defaultSureText == nil || defaultSureText == NULL || [defaultSureText isKindOfClass:[NSNull class]] || [[defaultSureText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
+            sureText = @"确定";
+        }else{
+            sureText = defaultSureText;
+        }
     }
     [alert addAction:[UIAlertAction actionWithTitle:sureText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self alertClickSureActionWithTag:tag];
     }]];
 }
 ///给alert添加取消按钮
-- (void)addCancleActionFromAlert:(UIAlertController *)alert cancleText:(NSString *)cancleText{
-    if (!cancleText || cancleText.length < 1) {
-        cancleText = @"取消";
+- (void)addCancelActionFromAlert:(UIAlertController *)alert cancelText:(NSString *)cancelText{
+    if (!cancelText || cancelText.length < 1) {
+        NSString * defaultCancelText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCancelText"];
+        if (defaultCancelText == nil || defaultCancelText == NULL || [defaultCancelText isKindOfClass:[NSNull class]] || [[defaultCancelText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
+            cancelText = @"取消";
+        }else{
+            cancelText = defaultCancelText;
+        }
     }
-    [alert addAction:[UIAlertAction actionWithTitle:cancleText style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:cancelText style:UIAlertActionStyleCancel handler:nil]];
 }
 ///通过重写此方法，配置输入框类型的alert种输入框的信息
 - (void)configAlertTextField:(UITextField *)textField{
