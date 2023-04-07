@@ -54,7 +54,7 @@
         
         [navigationBarAppearance setBackgroundImage:[self createImageWithColor:imageColor]];
         [navigationBarAppearance setShadowImage:[self createImageWithColor:imageColor]];
-      
+        
         navigationBarAppearance.backgroundColor = UIColor.clearColor;
         navigationBarAppearance.shadowColor = UIColor.clearColor;
         
@@ -62,9 +62,9 @@
         self.navigationController.navigationBar.scrollEdgeAppearance = navigationBarAppearance;
         self.navigationController.navigationBar.standardAppearance = navigationBarAppearance;
     }else{
-      UIImage *backgroundImage = [self createImageWithColor:imageColor];
-      [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-      self.navigationController.navigationBar.shadowImage = [self createImageWithColor:UIColor.clearColor]; //去掉黑线
+        UIImage *backgroundImage = [self createImageWithColor:imageColor];
+        [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+        self.navigationController.navigationBar.shadowImage = [self createImageWithColor:UIColor.clearColor]; //去掉黑线
     }
 }
 ///设置导航条左侧、右侧按钮，可以设置文字类型和图片类型按钮，文字和图片都传优先设置图片
@@ -96,7 +96,7 @@
             [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
         }
     }
-   
+    
     if (isRightBarButton) {
         [button addTarget:self action:@selector(rightBarButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }else{
@@ -132,6 +132,21 @@
     [self presentViewController:alert animated:YES completion:nil];
     return alert;
 }
+/// 创建alert---带有默认的确定、取消按钮
+- (UIAlertController *)createChooseALertWithMessage:(NSString *)message withTag:(int)tag{
+    NSString * defaultCancelText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCancelText"];
+    if (defaultCancelText == nil || defaultCancelText == NULL || [defaultCancelText isKindOfClass:[NSNull class]] || [[defaultCancelText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
+        defaultCancelText = @"取消";
+    }
+    return [self createChooseALertWithMessage:message sureText:@"" cancelText:defaultCancelText withTag:tag];
+}
+/// 创建alert---只有一个按钮，可自定义按钮文字
+- (UIAlertController *)createALertWithMessage:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag{
+    UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
+    [self addSureActionFromAlert:alert isInput:NO sureText:sureText withTag:(int)tag];
+    [self presentViewController:alert animated:YES completion:nil];
+    return alert;
+}
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 - (UIAlertController *)createInputAlertWithMessage:(NSString *)message withTag:(int)tag{
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
@@ -157,6 +172,7 @@
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
     if (disappearTime == 0) {
         disappearTime = 0.5;
+        NSLog(@"\n\n\ndisappearTime不能为0\n\n\n");
     }
     [self presentViewController:alert animated:YES completion:nil];
     [self performSelector:@selector(alertDisappear:) withObject:@[alert,@(tag)] afterDelay:disappearTime];

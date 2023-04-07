@@ -32,6 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param textFont 文字字体
 -(UIBarButtonItem *)setNavItemTitle:(NSString *)title image:(UIImage *)image isRightBarButton:(BOOL)isRightBarButton textColor:(UIColor *)textColor textFont:(UIFont *)textFont;
 
+/**  返回键按钮点击事件  */
+-(void)leftBarButtonClick;
+///导航条右侧按钮点击效果
+-(void)rightBarButtonClick;
+
 #pragma mark---创建各种类型提示窗AlertViewController
 #pragma mark---创建各种类型提示窗AlertViewController
 /**如果想设置alert的title，可以直接设置
@@ -52,6 +57,19 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - cancelText: 取消按钮文字
 ///   - tag: 唯一标识值
 - (UIAlertController *)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag;
+
+/// 创建alert---带有默认的确定、取消按钮
+/// - Parameters:
+///   - message: 提示语
+///   - tag:唯一标识值
+- (UIAlertController *)createChooseALertWithMessage:(NSString *)message withTag:(int)tag;
+
+/// 创建alert---只有一个按钮，可自定义按钮文字
+/// - Parameters:
+///   - message: 提示语
+///   - sureText: 确认按钮文字
+///   - tag: 唯一标识值
+- (UIAlertController *)createALertWithMessage:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag;
 
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 /// - Parameters:
