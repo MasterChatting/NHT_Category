@@ -20,8 +20,11 @@
     [super viewDidLoad];
     [self setNavTitle:@"9090" textColor:UIColor.redColor textFont:[UIFont systemFontOfSize:20]];
     [self setNavBarBackColor:UIColor.whiteColor];
+   
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [self alert_Sure_Message:@"12323"];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

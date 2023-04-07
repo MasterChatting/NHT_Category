@@ -71,6 +71,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - tag: 唯一标识值
 - (UIAlertController *)alert_Sure_Message:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag;
 
+/// 创建alert---只有默认确定按钮，并且点击不调用alertClickSureActionWithTag方法
+- (UIAlertController *)alert_Sure_Message:(NSString *)message;
+
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 /// - Parameters:
 ///   - message: 提示语

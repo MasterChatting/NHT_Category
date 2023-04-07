@@ -147,6 +147,14 @@
     [self presentViewController:alert animated:YES completion:nil];
     return alert;
 }
+
+/// 创建alert---只有默认确定按钮，并且点击不调用alertClickSureActionWithTag方法
+- (UIAlertController *)alert_Sure_Message:(NSString *)message{
+    UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
+    [self addSureActionFromAlert:alert isInput:NO sureText:@"" withTag:(int)-1];
+    [self presentViewController:alert animated:YES completion:nil];
+    return alert;
+}
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 - (UIAlertController *)alert_Input_Message:(NSString *)message withTag:(int)tag{
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
@@ -195,7 +203,9 @@
         }
     }
     [alert addAction:[UIAlertAction actionWithTitle:sureText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self alertClickSureActionWithTag:tag];
+        if(tag == -1){
+            [self alertClickSureActionWithTag:tag];
+        }
     }]];
 }
 ///给alert添加取消按钮
