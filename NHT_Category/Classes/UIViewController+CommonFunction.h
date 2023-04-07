@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark---创建各种类型提示窗AlertViewController
 #pragma mark---创建各种类型提示窗AlertViewController
 /**如果想设置alert的title，可以直接设置
- UIAlertController *alert = [self createDisappearALertWithMessage:@"message" disappearTime:3 withTag:10];
+ UIAlertController *alert = [self alert_Disappear_Message:@"message" disappearTime:3 withTag:10];
  alert.title = @"需要的titile";
  
  可通过设置
@@ -56,26 +56,26 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - sureText: 确认按钮文字
 ///   - cancelText: 取消按钮文字
 ///   - tag: 唯一标识值
-- (UIAlertController *)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag;
+- (UIAlertController *)alert_SureAndCancel_Message:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag;
 
 /// 创建alert---带有默认的确定、取消按钮
 /// - Parameters:
 ///   - message: 提示语
 ///   - tag:唯一标识值
-- (UIAlertController *)createChooseALertWithMessage:(NSString *)message withTag:(int)tag;
+- (UIAlertController *)alert_DefaultSureAndCancel_Message:(NSString *)message withTag:(int)tag;
 
 /// 创建alert---只有一个按钮，可自定义按钮文字
 /// - Parameters:
 ///   - message: 提示语
 ///   - sureText: 确认按钮文字
 ///   - tag: 唯一标识值
-- (UIAlertController *)createALertWithMessage:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag;
+- (UIAlertController *)alert_Sure_Message:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag;
 
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
 /// - Parameters:
 ///   - message: 提示语
 ///   - tag: 唯一标识值
-- (UIAlertController *)createInputAlertWithMessage:(NSString *)message withTag:(int)tag;
+- (UIAlertController *)alert_Input_Message:(NSString *)message withTag:(int)tag;
 
 //////通过重写此方法，配置输入框类型的alert种输入框的信息
 - (void)configAlertTextField:(UITextField *)textField;
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - message: 提示语
 ///   - disappearTime: disappearTime自动消失时间，不能为0
 ///   - tag: 唯一标识值
-- (UIAlertController *)createDisappearALertWithMessage:(NSString *)message disappearTime:(CGFloat)disappearTime withTag:(int)tag;
+- (UIAlertController *)alert_Disappear_Message:(NSString *)message disappearTime:(CGFloat)disappearTime withTag:(int)tag;
 
 ///提示框点击确认或者自动消失后的回调方法，该方法内容可以进行改写
 - (void)alertClickSureActionWithTag:(int)tag;

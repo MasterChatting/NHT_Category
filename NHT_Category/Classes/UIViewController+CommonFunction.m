@@ -123,7 +123,7 @@
 #pragma mark---创建各种类型提示窗AlertViewController
 #pragma mark---创建各种类型提示窗AlertViewController
 /// 创建alert---自定义取消、确认按钮文字，取消按钮文字不存在就不添加取消按钮然后就变成只有一个按钮的alert
-- (UIAlertController *)createChooseALertWithMessage:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag{
+- (UIAlertController *)alert_SureAndCancel_Message:(NSString *)message sureText:(NSString *)sureText cancelText:(NSString *)cancelText withTag:(int)tag{
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
     [self addSureActionFromAlert:alert isInput:NO sureText:sureText withTag:(int)tag];
     if(cancelText && cancelText.length > 0){
@@ -133,22 +133,22 @@
     return alert;
 }
 /// 创建alert---带有默认的确定、取消按钮
-- (UIAlertController *)createChooseALertWithMessage:(NSString *)message withTag:(int)tag{
+- (UIAlertController *)alert_DefaultSureAndCancel_Message:(NSString *)message withTag:(int)tag{
     NSString * defaultCancelText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCancelText"];
     if (defaultCancelText == nil || defaultCancelText == NULL || [defaultCancelText isKindOfClass:[NSNull class]] || [[defaultCancelText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
         defaultCancelText = @"取消";
     }
-    return [self createChooseALertWithMessage:message sureText:@"" cancelText:defaultCancelText withTag:tag];
+    return [self alert_SureAndCancel_Message:message sureText:@"" cancelText:defaultCancelText withTag:tag];
 }
 /// 创建alert---只有一个按钮，可自定义按钮文字
-- (UIAlertController *)createALertWithMessage:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag{
+- (UIAlertController *)alert_Sure_Message:(NSString *)message sureText:(NSString *)sureText withTag:(int)tag{
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
     [self addSureActionFromAlert:alert isInput:NO sureText:sureText withTag:(int)tag];
     [self presentViewController:alert animated:YES completion:nil];
     return alert;
 }
 /// 创建alert---输入框类型的alert，可通过alert.textFields.firstObject获取内容
-- (UIAlertController *)createInputAlertWithMessage:(NSString *)message withTag:(int)tag{
+- (UIAlertController *)alert_Input_Message:(NSString *)message withTag:(int)tag{
     UIAlertController *alert = [self createAlertWithTitle:@"" message:message];
     ///给alert添加输入框
     [alert addTextFieldWithConfigurationHandler:^(UITextField*_Nonnull textField) {
@@ -160,7 +160,7 @@
     return alert;
 }
 /// 创建alert---自动消失的alert，disappearTime自动消失时间，不能为0
-- (UIAlertController *)createDisappearALertWithMessage:(NSString *)message disappearTime:(CGFloat)disappearTime withTag:(int)tag{
+- (UIAlertController *)alert_Disappear_Message:(NSString *)message disappearTime:(CGFloat)disappearTime withTag:(int)tag{
     if (!message || message.length < 1) {
         NSString * defaultMessageTest = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultMessageText"];
         if (defaultMessageTest == nil || defaultMessageTest == NULL || [defaultMessageTest isKindOfClass:[NSNull class]] || [[defaultMessageTest stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
