@@ -18,7 +18,10 @@
         //导航条 标题默认配置
         shareDefaultConfiguration.defaultNavTitleColor = UIColor.blackColor;
         shareDefaultConfiguration.defaultNavTitleFont = [UIFont boldSystemFontOfSize:16];
-        
+        //导航条 默认背景色
+        shareDefaultConfiguration.defaultNavBarBackColor = UIColor.whiteColor;
+        //默认页面 背景色
+        shareDefaultConfiguration.defaultControllerBackColor = nil;
         //导航条 按钮的默认配置
         shareDefaultConfiguration.defaultLeftItemImage = nil;
         shareDefaultConfiguration.defaultNavTitleColor = UIColor.blackColor;

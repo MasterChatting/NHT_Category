@@ -4,7 +4,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - NHT_Category (0.6.0)
+  - NHT_Category (0.7.0)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  NHT_Category: 10b11ee7c456923247f39e3e7a5c29df6fbcf4df
+  NHT_Category: 7d166c282b978f38ef68e7fdc783335e7dde5f17
 
 PODFILE CHECKSUM: 14b7e474f38b3f9b6eca0ea068cb68c522126d9e
 

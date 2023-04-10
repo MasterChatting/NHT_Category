@@ -9,6 +9,7 @@
 #import "NHTViewController.h"
 #import "UIViewController+CommonFunction.h"
 #import "NextVC.h"
+#import "DefaultConfiguration.h"
 
 @interface NHTViewController ()
 
@@ -31,10 +32,11 @@
     [self alert_DefaultSureAndCancel_Message:@"1343" withTag:2];
 }
 -(void)alertClickSureActionWithTag:(int)tag{
- 
+    [DefaultConfiguration shareDefaultConfiguration].defaultControllerBackColor = UIColor.redColor;
     NextVC *vc = [[NextVC alloc] init];
     UINavigationController *rootVc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:rootVc animated:YES completion:nil];
+    
 }
 - (void)didReceiveMemoryWarning
 {

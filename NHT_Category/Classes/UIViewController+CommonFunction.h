@@ -13,17 +13,24 @@
 #pragma mark---设置设置导航条标题、背景
 
 /**
+    DefaultConfiguration中可配置
     可配置导航条
     标题
     默认文字颜色defaultNavTitleColor
     默认文字大小defaultNavTitleFont
- 
+     
+    默认导航条背景色 defaultNavBarBackColor
+    默认页面controller背景色 defaultControllerBackColor，如果不设置默认为nil，不会自动设置页面背景色
+     
     按钮
     默认左侧返回按钮图片 defaultLeftItemImage
     默认按钮文字颜色颜色 defaultItemColor
-    默认按钮文字大小 defaultItemFont
+    默认按钮文字大小 defaultItemFontt
     配置方法
     [DefaultConfiguration shareDefaultConfiguration].defaultNavTitleColor = UIColor.blackColor;
+ 
+    setNavTitle 方法会自动设置
+    导航条背景色、controller背景色、返回按钮
  */
 
 /// 设置导航条标题内容，颜色和大小为默认

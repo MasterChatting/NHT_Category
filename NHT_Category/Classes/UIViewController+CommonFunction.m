@@ -47,7 +47,14 @@
     titleLabel_Mine.lineBreakMode = NSLineBreakByTruncatingMiddle;
     titleLabel_Mine.backgroundColor = UIColor.clearColor;
     self.navigationItem.titleView = titleLabel_Mine;
-    [self setNavBarBackColor:UIColor.whiteColor];
+    
+    //设置默认导航条颜色
+    [self setNavBarBackColor:[DefaultConfiguration shareDefaultConfiguration].defaultNavBarBackColor];
+    
+    //设置view默认背景色
+    if([DefaultConfiguration shareDefaultConfiguration].defaultControllerBackColor){
+        self.view.backgroundColor = [DefaultConfiguration shareDefaultConfiguration].defaultControllerBackColor;
+    }
     
     //默认设置返回按钮样式 先查询有没有设置默认的返回按钮图片，如果有就使用，没有就显示 汉字 返回
     if([DefaultConfiguration shareDefaultConfiguration].defaultLeftItemImage){

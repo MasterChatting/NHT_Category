@@ -1,6 +1,6 @@
 {
   "name": "NHT_Category",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "summary": "一些常用的Category.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/MasterChatting/NHT_Category",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/MasterChatting/NHT_Category.git",
-    "tag": "0.6.0"
+    "tag": "0.7.0"
   },
   "platforms": {
     "ios": "10.0"
