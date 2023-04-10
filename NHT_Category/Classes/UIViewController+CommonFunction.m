@@ -231,7 +231,7 @@
         }
     }
     [alert addAction:[UIAlertAction actionWithTitle:sureText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if(tag == -1){
+        if(tag != -1){
             [self alertClickSureActionWithTag:tag];
         }
     }]];

@@ -8,6 +8,7 @@
 
 #import "NHTViewController.h"
 #import "UIViewController+CommonFunction.h"
+#import "NextVC.h"
 
 @interface NHTViewController ()
 
@@ -18,12 +19,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavTitle:@"9090" textColor:UIColor.redColor textFont:[UIFont systemFontOfSize:20]];
-    [self setNavBarBackColor:UIColor.whiteColor];
+//    [self setNavTitle:@"9090" textColor:UIColor.redColor textFont:[UIFont systemFontOfSize:20]];
+
    
+    [self setNavTitle:@"akdhska"];
+    [self setNavItem_rightTitle:@"rightiem"];
+    [self setNavBarBackColor:UIColor.whiteColor];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self alert_Sure_Message:@"12323"];
+//    [self alert_Sure_Message:@"12323"];
+    [self alert_DefaultSureAndCancel_Message:@"1343" withTag:2];
+}
+-(void)alertClickSureActionWithTag:(int)tag{
+ 
+    NextVC *vc = [[NextVC alloc] init];
+    UINavigationController *rootVc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:rootVc animated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning
 {

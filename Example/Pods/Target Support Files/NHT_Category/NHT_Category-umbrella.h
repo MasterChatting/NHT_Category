@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "DefaultConfiguration.h"
 #import "UIControl+ClickInterval.h"
 #import "UITextView+NoGap.h"
 #import "UIViewController+CommonFunction.h"

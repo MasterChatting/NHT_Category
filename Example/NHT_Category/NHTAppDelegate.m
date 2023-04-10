@@ -7,12 +7,22 @@
 //
 
 #import "NHTAppDelegate.h"
+#import <DefaultConfiguration.h>
 
 @implementation NHTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [DefaultConfiguration shareDefaultConfiguration].defaultCancelText = @"取消啊";
+    [DefaultConfiguration shareDefaultConfiguration].defaultSureText = @"hahha";
+    
+    [DefaultConfiguration shareDefaultConfiguration].defaultNavTitleFont = [UIFont systemFontOfSize:20];
+    [DefaultConfiguration shareDefaultConfiguration].defaultNavTitleColor = UIColor.redColor;
+    [DefaultConfiguration shareDefaultConfiguration].defaultItemFont = [UIFont systemFontOfSize:20];
+    [DefaultConfiguration shareDefaultConfiguration].defaultItemColor = UIColor.redColor;
+    [DefaultConfiguration shareDefaultConfiguration].defaultLeftItemImage = [UIImage imageNamed:@"123.png"];
+    
     return YES;
 }
 
