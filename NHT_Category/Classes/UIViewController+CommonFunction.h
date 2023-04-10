@@ -7,11 +7,28 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (CommonFunction)
 
 #pragma mark---设置设置导航条标题、背景
+
+/**
+    可配置导航条
+    标题
+    默认文字颜色defaultNavTitleColor
+    默认文字大小defaultNavTitleFont
+ 
+    按钮
+    默认左侧返回按钮图片 defaultLeftItemImage
+    默认按钮文字颜色颜色 defaultItemColor
+    默认按钮文字大小 defaultItemFont
+    配置方法
+    [DefaultConfiguration shareDefaultConfiguration].defaultNavTitleColor = UIColor.blackColor;
+ */
+
+/// 设置导航条标题内容，颜色和大小为默认
+/// @param navTitle 文字
+-(void)setNavTitle:(NSString *)navTitle;
 /**
  设置导航条标题内容、颜色、字体，会自动设置导航条背景色为白色（可调用setNavBarBackColor重置）
  @param navTitle 文字
@@ -24,13 +41,22 @@ NS_ASSUME_NONNULL_BEGIN
  @param imageColor 背景颜色
  */
 -(void)setNavBarBackColor:(UIColor *)imageColor;
+
+/// 设置导航条按钮-右侧文字类型按钮，默认颜色和字体
+/// @param title 文字按钮
+-(UIBarButtonItem *)setNavItem_rightTitle:(NSString *)title;
+/// 设置导航条按钮-右侧图片类型按钮
+/// @param image 按钮图片
+-(UIBarButtonItem *)setNavItem_rightImage:(UIImage *)image;
+
 /// 设置导航条左侧、右侧按钮，可以设置文字类型和图片类型按钮，文字和图片都传优先设置图片
 /// @param title 按钮文字
 /// @param image 按钮图片
 /// @param isRightBarButton 是否是右侧按钮
 /// @param textColor 文字颜色
 /// @param textFont 文字字体
--(UIBarButtonItem *)setNavItemTitle:(NSString *)title image:(UIImage *)image isRightBarButton:(BOOL)isRightBarButton textColor:(UIColor *)textColor textFont:(UIFont *)textFont;
+-(UIBarButtonItem *)setNavItem_Title:(NSString *)title image:(UIImage *)image isRightBarButton:(BOOL)isRightBarButton textColor:(UIColor *)textColor textFont:(UIFont *)textFont;
+
 
 /**  返回键按钮点击事件  */
 -(void)leftBarButtonClick;
@@ -44,9 +70,13 @@ NS_ASSUME_NONNULL_BEGIN
  alert.title = @"需要的titile";
  
  可通过设置
- DefaultMessageText（默认提示语文字）、DefaultSureText（默认确认文字）、DefaultCancelText（默认取消文字）来更改弹窗显示文字，比如适配多语言情况，可直接设置DefaultCancelText为Cancel，这样取消按钮默认就是Cancel
+ defaultMessageText（默认提示语文字）
+ defaultSureText（默认确认文字）
+ defaultCancelText（默认取消文字）
+ 
+ 来更改弹窗显示文字，比如适配多语言情况，可直接设置defaultCancelText为Cancel，这样取消按钮默认就是Cancel
  比如：在应用启动后设置
- [[NSUserDefaults standardUserDefaults] setValue:@"Cancel" forKey:@"DefaultCancelText"];
+ [DefaultConfiguration shareDefaultConfiguration].defaultCancelText = @"Cancel";
  这样取消按钮默认就显示未Cancel
  */
 
@@ -95,4 +125,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END

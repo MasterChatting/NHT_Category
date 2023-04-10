@@ -6,6 +6,7 @@
 //
 
 #import "UIViewController+CommonFunction.h"
+#import "DefaultConfiguration.h"
 
 @implementation UIViewController (CommonFunction)
 
@@ -29,6 +30,11 @@
 }
 #pragma mark---设置设置导航条标题、背景颜色、导航条左侧或右侧按钮(文字、图片类型)
 #pragma mark---设置设置导航条标题、背景颜色、导航条左侧或右侧按钮(文字、图片类型)
+-(void)setNavTitle:(NSString *)navTitle{
+    UIColor *textColor = [DefaultConfiguration shareDefaultConfiguration].defaultNavTitleColor;
+    UIFont *textFont = [DefaultConfiguration shareDefaultConfiguration].defaultNavTitleFont;
+    [self  setNavTitle:navTitle textColor:textColor textFont:textFont];
+}
 ///设置导航条标题内容、颜色、字体
 -(void)setNavTitle:(NSString *)navTitle textColor:(UIColor*)textColor textFont:(UIFont *)textFont{
     self.navigationController.navigationBar.hidden = NO;
@@ -42,10 +48,18 @@
     titleLabel_Mine.backgroundColor = UIColor.clearColor;
     self.navigationItem.titleView = titleLabel_Mine;
     [self setNavBarBackColor:UIColor.whiteColor];
+    
+    //默认设置返回按钮样式 先查询有没有设置默认的返回按钮图片，如果有就使用，没有就显示 汉字 返回
+    if([DefaultConfiguration shareDefaultConfiguration].defaultLeftItemImage){
+        [self setNavItem_Title:@"" image:[DefaultConfiguration shareDefaultConfiguration].defaultLeftItemImage isRightBarButton:NO textColor:nil textFont:nil];
+    }else{
+        UIColor *textColor = [DefaultConfiguration shareDefaultConfiguration].defaultItemColor;
+        UIFont *textFont = [DefaultConfiguration shareDefaultConfiguration].defaultItemFont;
+        [self setNavItem_Title:@"返回" image:nil isRightBarButton:NO textColor:textColor textFont:textFont];
+    }
 }
-
+///设置导航条背景颜色,不传默认是白色，可传渐变色
 -(void)setNavBarBackColor:(UIColor *)imageColor{
-    ///设置导航条背景颜色,不传默认是白色，可传渐变色
     if (!imageColor) {
         imageColor = UIColor.whiteColor;
     }
@@ -67,8 +81,22 @@
         self.navigationController.navigationBar.shadowImage = [self createImageWithColor:UIColor.clearColor]; //去掉黑线
     }
 }
+/// 设置导航条按钮-右侧文字类型按钮，默认颜色和字体
+/// @param title 文字按钮
+-(UIBarButtonItem *)setNavItem_rightTitle:(NSString *)title{
+    UIColor *textColor = [DefaultConfiguration shareDefaultConfiguration].defaultItemColor;
+    UIFont *textFont = [DefaultConfiguration shareDefaultConfiguration].defaultItemFont;
+    return [self setNavItem_Title:title image:nil isRightBarButton:YES textColor:textColor textFont:textFont];
+}
+/// 设置导航条按钮-右侧图片类型按钮
+/// @param image 按钮图片
+-(UIBarButtonItem *)setNavItem_rightImage:(UIImage *)image{
+    UIColor *textColor = [DefaultConfiguration shareDefaultConfiguration].defaultItemColor;
+    UIFont *textFont = [DefaultConfiguration shareDefaultConfiguration].defaultItemFont;
+    return [self setNavItem_Title:@"" image:image isRightBarButton:YES textColor:textColor textFont:textFont];
+}
 ///设置导航条左侧、右侧按钮，可以设置文字类型和图片类型按钮，文字和图片都传优先设置图片
--(UIBarButtonItem *)setNavItemTitle:(NSString *)title image:(UIImage *)image isRightBarButton:(BOOL)isRightBarButton textColor:(UIColor *)textColor textFont:(UIFont *)textFont{
+-(UIBarButtonItem *)setNavItem_Title:(NSString *)title image:(UIImage *)image isRightBarButton:(BOOL)isRightBarButton textColor:(UIColor *)textColor textFont:(UIFont *)textFont{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0, 0, 44, 44)];
     button.backgroundColor = [UIColor clearColor];
@@ -134,7 +162,7 @@
 }
 /// 创建alert---带有默认的确定、取消按钮
 - (UIAlertController *)alert_DefaultSureAndCancel_Message:(NSString *)message withTag:(int)tag{
-    NSString * defaultCancelText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCancelText"];
+    NSString * defaultCancelText = [DefaultConfiguration shareDefaultConfiguration].defaultCancelText;
     if (defaultCancelText == nil || defaultCancelText == NULL || [defaultCancelText isKindOfClass:[NSNull class]] || [[defaultCancelText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
         defaultCancelText = @"取消";
     }
@@ -170,7 +198,7 @@
 /// 创建alert---自动消失的alert，disappearTime自动消失时间，不能为0
 - (UIAlertController *)alert_Disappear_Message:(NSString *)message disappearTime:(CGFloat)disappearTime withTag:(int)tag{
     if (!message || message.length < 1) {
-        NSString * defaultMessageTest = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultMessageText"];
+        NSString * defaultMessageTest = [DefaultConfiguration shareDefaultConfiguration].defaultMessageText;
         if (defaultMessageTest == nil || defaultMessageTest == NULL || [defaultMessageTest isKindOfClass:[NSNull class]] || [[defaultMessageTest stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
             message = @"操作失败，请重试！";
         }else{
@@ -195,7 +223,7 @@
 ///给alert添加确定按钮
 - (void)addSureActionFromAlert:(UIAlertController *)alert isInput:(BOOL)isInput sureText:(NSString *)sureText withTag:(int)tag{
     if (!sureText || sureText.length < 1) {
-        NSString * defaultSureText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultSureText"];
+        NSString * defaultSureText = [DefaultConfiguration shareDefaultConfiguration].defaultSureText;
         if (defaultSureText == nil || defaultSureText == NULL || [defaultSureText isKindOfClass:[NSNull class]] || [[defaultSureText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
             sureText = @"确定";
         }else{
@@ -211,7 +239,7 @@
 ///给alert添加取消按钮
 - (void)addCancelActionFromAlert:(UIAlertController *)alert cancelText:(NSString *)cancelText{
     if (!cancelText || cancelText.length < 1) {
-        NSString * defaultCancelText = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCancelText"];
+        NSString * defaultCancelText = [DefaultConfiguration shareDefaultConfiguration].defaultCancelText;
         if (defaultCancelText == nil || defaultCancelText == NULL || [defaultCancelText isKindOfClass:[NSNull class]] || [[defaultCancelText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0){
             cancelText = @"取消";
         }else{
